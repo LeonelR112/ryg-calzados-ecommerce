@@ -1,0 +1,9 @@
+{
+    "require": {
+        "bramus/router": "^1.6",
+        "vlucas/phpdotenv": "^5.4",
+        "eoghanobrien/php-simple-mail": "^1.7",
+        "eftec/bladeone": "^4.5",
+        "nette/robot-loader": "^3.4"
+    }
+}
