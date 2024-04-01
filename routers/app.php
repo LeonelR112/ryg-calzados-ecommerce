@@ -15,5 +15,8 @@
     ## Productos
     $Router->get("/productos", "ProductoController@renderIndex");
 
+    ## Mi carrito
+    $Router->get("/mi-carrito", "MiCarritoController@renderIndex");
+
     $Router->run();
 ?>
