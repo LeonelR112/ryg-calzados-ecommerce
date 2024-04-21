@@ -8,15 +8,16 @@
     require_once __DIR__ . "/api.php";
 
     ### Rutas ###
-    $Router->get("/", function(){
-        MainController::renderIndex();
-    });
+    $Router->get("/", "HomePageController@renderIndex");
     
     ## Productos
     $Router->get("/productos", "ProductoController@renderIndex");
 
     ## Mi carrito
     $Router->get("/mi-carrito", "MiCarritoController@renderIndex");
+
+    # Ingresar (log in)
+    $Router->get("/ingresar", "LoginController@renderIndex");
 
     $Router->run();
 ?>

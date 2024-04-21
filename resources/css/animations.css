@@ -36,7 +36,11 @@
     }
 }  
 
+@-webkit-keyframes fade-in{0%{opacity:0}100%{opacity:1}}@keyframes fade-in{0%{opacity:0}100%{opacity:1}}
+
 .slit-in-vertical {
 	-webkit-animation: slit-in-vertical 0.45s ease-out both;
 	        animation: slit-in-vertical 0.45s ease-out both;
 }
+
+.fade-in{-webkit-animation:fade-in 1.2s cubic-bezier(.39,.575,.565,1.000) both;animation:fade-in 1.2s cubic-bezier(.39,.575,.565,1.000) both}

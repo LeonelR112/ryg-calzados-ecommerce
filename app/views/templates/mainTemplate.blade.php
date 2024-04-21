@@ -6,8 +6,9 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>@yield('title')</title>
         {!! cssFile('bootstrap.min') !!}
+        {!! cssFile('navbar') !!}
         {!! cssFile('styles') !!}
-        {!! cssFile('animations') !!}
+        {!! cssFile('animations', false) !!}
         {!! cssFile('lightbox') !!}
         {!! jsFile('classes\CarritoProductos') !!}
         {!! jsFile('jquery-3.7.1.min') !!}
