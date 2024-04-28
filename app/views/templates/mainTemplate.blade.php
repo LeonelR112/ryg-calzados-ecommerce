@@ -7,7 +7,7 @@
         <title>@yield('title')</title>
         {!! cssFile('bootstrap.min') !!}
         {!! cssFile('navbar') !!}
-        {!! cssFile('styles') !!}
+        {!! cssFile('styles', false) !!}
         {!! cssFile('animations', false) !!}
         {!! cssFile('lightbox') !!}
         {!! jsFile('classes\CarritoProductos') !!}

@@ -18,6 +18,8 @@
 
     # Ingresar (log in)
     $Router->get("/ingresar", "LoginController@renderIndex");
+    $Router->post("/ingresar/verificar", "LoginController@verificarUsuario");
+    $Router->get("/registrarse", "LoginController@formularioRegistro");
 
     $Router->run();
 ?>
