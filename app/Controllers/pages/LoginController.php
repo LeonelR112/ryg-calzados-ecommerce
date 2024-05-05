@@ -9,8 +9,11 @@
         }
 
         static function formularioRegistro(){
-
             view("pages.login.formularioDeRegistro");
+        }
+
+        static function verificarUnRegistro(){
+            var_dump($_POST);
         }
     }
 ?>
