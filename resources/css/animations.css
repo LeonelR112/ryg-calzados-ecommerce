@@ -38,9 +38,39 @@
 
 @-webkit-keyframes fade-in{0%{opacity:0}100%{opacity:1}}@keyframes fade-in{0%{opacity:0}100%{opacity:1}}
 
+/**
+ * ----------------------------------------
+ * animation scale-up-center
+ * ----------------------------------------
+ */
+ @-webkit-keyframes scale-up-center {
+        0% {
+          -webkit-transform: scale(0.5);
+                  transform: scale(0.5);
+        }
+        100% {
+          -webkit-transform: scale(1);
+                  transform: scale(1);
+        }
+      }
+      @keyframes scale-up-center {
+        0% {
+          -webkit-transform: scale(0.5);
+                  transform: scale(0.5);
+        }
+        100% {
+          -webkit-transform: scale(1);
+                  transform: scale(1);
+        }
+}
+      
+@-webkit-keyframes slit-in-horizontal{0%{-webkit-transform:translateZ(-800px) rotateX(90deg);transform:translateZ(-800px) rotateX(90deg);opacity:0}54%{-webkit-transform:translateZ(-160px) rotateX(87deg);transform:translateZ(-160px) rotateX(87deg);opacity:1}100%{-webkit-transform:translateZ(0) rotateX(0);transform:translateZ(0) rotateX(0)}}@keyframes slit-in-horizontal{0%{-webkit-transform:translateZ(-800px) rotateX(90deg);transform:translateZ(-800px) rotateX(90deg);opacity:0}54%{-webkit-transform:translateZ(-160px) rotateX(87deg);transform:translateZ(-160px) rotateX(87deg);opacity:1}100%{-webkit-transform:translateZ(0) rotateX(0);transform:translateZ(0) rotateX(0)}}
+
 .slit-in-vertical {
 	-webkit-animation: slit-in-vertical 0.45s ease-out both;
 	        animation: slit-in-vertical 0.45s ease-out both;
 }
 
 .fade-in{-webkit-animation:fade-in 1.2s cubic-bezier(.39,.575,.565,1.000) both;animation:fade-in 1.2s cubic-bezier(.39,.575,.565,1.000) both}
+.scale-up-center{-webkit-animation:scale-up-center .4s cubic-bezier(.39,.575,.565,1.000) both;animation:scale-up-center .4s cubic-bezier(.39,.575,.565,1.000) both}
+.slit-in-horizontal{-webkit-animation:slit-in-horizontal .45s ease-out both;animation:slit-in-horizontal .45s ease-out both}

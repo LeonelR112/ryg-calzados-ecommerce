@@ -13,6 +13,7 @@
         {!! jsFile('classes\CarritoProductos') !!}
         {!! jsFile('jquery-3.7.1.min') !!}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         @include('components.jsGlobal')
         @yield('header-scripts')
     </head>
@@ -25,6 +26,7 @@
         {!! jsFile('popper.min') !!}
         {!! jsFile('bootstrap.min') !!}
         {!! jsFile('lightbox') !!}
+        @include('components.notificacionSwal')
         @yield('footer-scripts')
     </body>
 </html>

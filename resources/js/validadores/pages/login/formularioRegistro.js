@@ -82,20 +82,22 @@ function validarEmail(valor){
 }
 
 function validarTelefono(valor){
-    if(valor.length == 0){
-        VIT.telefono = false;
-        input_telefono.classList.add("is-invalid");
-        msgTelefono.innerHTML = `Ingrese un número de teléfono!`;
-    }
-    else if(valor.length < 6){
-        VIT.telefono = false;
-        input_telefono.classList.add("is-invalid");
-        msgTelefono.innerHTML = `El formato del teléfono ingresado parece incompleto o es inválido.`;
-    }
-    else if(valor.length > 25){
-        VIT.telefono = false;
-        input_telefono.classList.add("is-invalid");
-        msgTelefono.innerHTML = `El teléfono ingresado es demasiado largo!`;
+    if(valor.length > 0){
+        if(valor.length < 6){
+            VIT.telefono = false;
+            input_telefono.classList.add("is-invalid");
+            msgTelefono.innerHTML = `El formato del teléfono ingresado parece incompleto o es inválido.`;
+        }
+        else if(valor.length > 25){
+            VIT.telefono = false;
+            input_telefono.classList.add("is-invalid");
+            msgTelefono.innerHTML = `El teléfono ingresado es demasiado largo!`;
+        }
+        else{
+            VIT.telefono = true;
+            input_telefono.classList.remove("is-invalid");
+            msgTelefono.innerHTML = ``;
+        }
     }
     else{
         VIT.telefono = true;
