@@ -22,5 +22,11 @@
     $Router->get("/registrarse", "LoginController@formularioRegistro");
     $Router->post("/ingresar/verificar-registro", "LoginController@verificarUnRegistro");
 
+    /// Sesión iniciada
+
+    ## Dashboard
+    $Router->get("auth/dashboard", "DashboardController@renderIndex");
+
+    $Router->get("auth/log-out", "LoginController@cerrarSesion");
     $Router->run();
 ?>

@@ -10,6 +10,8 @@
     --color-lightgrey-5 : #F3F5F8;
     --color-dark: #272727;
     --color-main-blue : #1E3D73;
+    --color-grey-2: #8f8f8f;
+    --color-grey-3: #b1b1b1;
 }
 
 *{
@@ -25,7 +27,6 @@ html{
 }
 
 main{
-    padding-top: 2rem;
     min-height: 88vh;
 }
 
@@ -47,6 +48,20 @@ main{
     font-size: 38px;
     font-weight: bold;
     color: #44945c;
+}
+
+.bg-grey-2{
+    background-color: var(--color-grey-2) ;
+}
+
+.header-section-auth{
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: var(--color-grey-3);
+    color: whitesmoke;
+    font-size: 27px;
+    font-weight: 700;
 }
 
 /* Spinners loading */

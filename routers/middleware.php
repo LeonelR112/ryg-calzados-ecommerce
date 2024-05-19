@@ -9,6 +9,18 @@
         
     });
 
+    $Router->before("GET|POST", "auth/.*" ,function(){
+        if(!isset($_SESSION['session_user'])){
+            redirectTo("ingresar");
+        }
+    });
+
+    $Router->before("GET", "ingresar" ,function(){
+        if(isset($_SESSION['session_user'])){
+            redirectTo("auth/dashboard");
+        }
+    });
+
     $Router->before("GET|POST", "/api/.*" ,function(){
         
     });

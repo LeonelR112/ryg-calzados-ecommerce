@@ -18,7 +18,7 @@
             <form action="{{route('ingresar/verificar')}}" method="POST">
                 <div class="mb-3">
                     <label for="input_email" class="form-label">Email o nombre de usuario</label>
-                    <input type="text" class="form-control" id="input_email" name="email" placeholder="name@example.com">
+                    <input type="text" class="form-control" id="input_email" name="email" placeholder="name@example.com" value="{{isset($_SESSION['prevData']['prevemail']) ? $_SESSION['prevData']['prevemail'] : ""}}">
                     <div class="invalid-feedback" id="msgEmail"></div>
                 </div> 
                 <div class="mb-3">
@@ -40,6 +40,11 @@
     </section>
 </section>
 @endsection
+@isset($_SESSION['prevData'])
+    @php
+        unset($_SESSION['prevData']);
+    @endphp
+@endisset
 @section('footer-scripts')
     {!! jsFile('validadores\pages\login\indexLogin', false) !!}
 @endsection

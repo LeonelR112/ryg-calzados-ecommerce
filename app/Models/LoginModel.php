@@ -37,6 +37,25 @@
             }
         }
 
+        public function getRegistroPorEmail(string $email){
+            try{
+                $sql = "SELECT * FROM usuarios WHERE email = :email";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(":email", $email, PDO::PARAM_STR);
+                if(!$stmt->execute()){
+                    return false;
+                }
+                else{
+                    $registro = $stmt->fetch(PDO::FETCH_ASSOC);
+                    return $registro;
+                }
+            }
+            catch(PDOException $e){
+                Logger::error($e->getMessage());
+                printMensajeAlertaCritica("Ha ocurrido un error crítico y el programa se ha detenido. Verifique la conexión al sevidor.");
+            }
+        }
+
         public function addRegistroSolicitud(array $datos){
             try{
                 $sql = "INSERT INTO usuarios (nombre, email, telefono, password, categoria, creado_en, actualizado_en, estado, verificado, mensaje_solicitud) VALUES (:nombre, :email, :telefono, :password, :categoria, :creado_en, :actualizado_en, :estado, 'N', :mensaje_solicitud)";
