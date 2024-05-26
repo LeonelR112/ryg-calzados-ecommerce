@@ -27,6 +27,10 @@
     ## Dashboard
     $Router->get("auth/dashboard", "DashboardController@renderIndex");
 
+    ## Usuarios
+    $Router->get("auth/usuarios", "UsuarioController@renderIndex");
+    $Router->get("auth/usuarios/nuevo-usuario", "UsuarioController@formNuevoUsuario");
+
     $Router->get("auth/log-out", "LoginController@cerrarSesion");
     $Router->run();
 ?>

@@ -21,7 +21,7 @@
     <body>
         @include('components.navbar')
         <main>
-            <section class="row m-0">
+            <section class="row m-0 fade-in">
                 <div class="col-0 col-lg-2 bg-grey-2 p-0" style="min-height: 90vh;">
                     @include('components.sidemenuAdmin')
                 </div>
