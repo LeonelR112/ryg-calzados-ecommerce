@@ -58,7 +58,7 @@ function obtenerCategoriaSpan(nro_categoria){
         return `<span class="badge bg-primary" title="Administrador">Administrador</span>`
     }
     else if(nro_categoria == 4){
-        return `<span class="badge bg-secodary">Miembro</span>`
+        return `<span class="badge bg-secondary">Miembro</span>`
     }
     else{
         return `Desconocido`

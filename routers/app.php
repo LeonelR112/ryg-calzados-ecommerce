@@ -30,6 +30,7 @@
     ## Usuarios
     $Router->get("auth/usuarios", "UsuarioController@renderIndex");
     $Router->get("auth/usuarios/nuevo-usuario", "UsuarioController@formNuevoUsuario");
+    $Router->post("auth/usuarios/crear-usuario", "UsuarioController@crearNuevoUsuario");
 
     $Router->get("auth/log-out", "LoginController@cerrarSesion");
     $Router->run();

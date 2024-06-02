@@ -36,6 +36,45 @@
             }
         }
 
+        public function addUsuario(array $datos){
+            try{
+                $sql = "INSERT INTO usuarios (nombre, email, telefono, password, categoria, creado_en, actualizado_en, estado, verificado, mensaje_solicitud) VALUES 
+                (:nombre, :email, :telefono, :password, :categoria, :creado_en, :actualizado_en, :estado, :verificado, :mensaje_solicitud)";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(":nombre", $datos['nombre'], PDO::PARAM_STR);
+                $stmt->bindParam(":email", $datos['email'], PDO::PARAM_STR);
+                $stmt->bindParam(":telefono", $datos['telefono'], PDO::PARAM_INT);
+                $stmt->bindParam(":password", $datos['contrasena'], PDO::PARAM_STR);
+                $stmt->bindParam(":categoria", $datos['categoria'], PDO::PARAM_INT);
+                $stmt->bindParam(":creado_en", $datos['creado_en'], PDO::PARAM_STR);
+                $stmt->bindParam(":actualizado_en", $datos['actualizado_en'], PDO::PARAM_STR);
+                $stmt->bindParam(":estado", $datos['estado'], PDO::PARAM_STR);
+                $stmt->bindParam(":verificado", $datos['verificado'], PDO::PARAM_STR);
+                $stmt->bindParam(":mensaje_solicitud", $datos['mensaje_solicitud'], PDO::PARAM_STR);
+                if(!$stmt->execute()){
+                    return false;
+                }
+                else{
+                    $this->setId_usuario($this->db->lastInsertId());
+                    $this->setNombre($datos['nombre']);
+                    $this->setEmail($datos['email']);
+                    $this->setTelefono($datos['telefono']);
+                    $this->setPassword($datos['contrasena']);
+                    $this->setCategoria($datos['categoria']);
+                    $this->setCreado_en($datos['creado_en']);
+                    $this->setActualizado_en($datos['actualizado_en']);
+                    $this->setEstado($datos['estado']);
+                    $this->setVerificado($datos['verificado']);
+                    $this->setMensaje_solicitud($datos['mensaje_solicitud']);
+                    return $this;
+                }
+            }
+            catch(PDOException $e){
+                Logger::error("ProductoModel - addUsuario - " . $e->getMessage(), "Posible desconexión");
+                ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
+            }
+        }
+
         /**
          * Get the value of id_usuario
          */ 

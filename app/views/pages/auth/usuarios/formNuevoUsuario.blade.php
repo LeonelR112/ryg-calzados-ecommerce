@@ -1,5 +1,5 @@
 @extends('templates.mainTemplateAuth')
-@section('title', 'Usuarios')
+@section('title', 'R&G - Usuarios')
 @section('title-page', 'USUARIOS')
 @section('header-scripts')
 @endsection
@@ -14,7 +14,7 @@
             </nav>          
        </div>
        <div class="col-12">
-            <form action="#" method="POST">
+            <form action="{{route('auth/usuarios/crear-usuario')}}" method="POST">
                 <section class="row m-0 justify-content-center">
                     <div class="col-12 col-md-10 col-lg-9 col-xxl-8 border shadow-sm p-2 py-4">
                         <h5 class="text-center">Crear nuevo usuario</h5>
@@ -38,7 +38,7 @@
                             <div class="col-12 col-lg-6">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Teléfono</span>
-                                    <input type="email" class="form-control" id="input_telefono" name="telefono" placeholder="" aria-label="" aria-describedby="">
+                                    <input type="text" class="form-control" id="input_telefono" name="telefono" placeholder="" aria-label="" aria-describedby="">
                                     <div class="invalid-feedback" id="msgTelefono"></div>
                                 </div>                              
                             </div>
@@ -52,7 +52,7 @@
                             <div class="col-12 col-lg-6">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Categoría*</span>
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select class="form-select" name="categoria" aria-label="Default select example">
                                         <option value="4">Miembro</option>
                                         <option value="1">Administrador</option>
                                     </select>
@@ -61,7 +61,7 @@
                             <div class="col-12 col-lg-6">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Estado*</span>
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select class="form-select" name="estado" aria-label="Default select example">
                                         <option value="A">Activo</option>
                                         <option value="I">Inactivo</option>
                                     </select>
@@ -70,7 +70,7 @@
                             <div class="col-12 col-lg-6">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Verificado*</span>
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select class="form-select" name="verificado" aria-label="Default select example">
                                         <option value="S">Si</option>
                                         <option value="N">No</option>
                                     </select>

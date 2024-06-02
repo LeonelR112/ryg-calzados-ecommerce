@@ -1,5 +1,5 @@
 @extends('templates.mainTemplateAuth')
-@section('title', 'Dashboard')
+@section('title', 'R&G - Dashboard')
 @section('title-page', 'DASHBOARD')
 @section('content')
 

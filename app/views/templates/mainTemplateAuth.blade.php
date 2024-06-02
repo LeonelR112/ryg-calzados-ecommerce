@@ -36,6 +36,7 @@
         {!! jsFile('bootstrap.min') !!}
         {!! jsFile('lightbox') !!}
         @include('components.notificacionSwal')
+        @include('components.NotificacionToast')
         @yield('footer-scripts')
     </body>
 </html>

@@ -1,5 +1,5 @@
 @extends('templates.mainTemplateAuth')
-@section('title', 'Usuarios')
+@section('title', 'R&G - Usuarios')
 @section('title-page', 'USUARIOS')
 @section('header-scripts')
     {!! paginationCSS() !!}
