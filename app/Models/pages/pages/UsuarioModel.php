@@ -36,6 +36,25 @@
             }
         }
 
+        public function getUsuario(int $id_usuario){
+            try{
+                $sql = "SELECT * FROM usuarios WHERE id_usuario = :id_usuario";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
+                if(!$stmt->execute()){
+                    return false;
+                }
+                else{
+                    $registro = $stmt->fetch(PDO::FETCH_ASSOC);
+                    return $registro;
+                }
+            }
+            catch(PDOException $e){
+                Logger::error("ProductoModel - getUsuario - " . $e->getMessage(), "Posible desconexión");
+                ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
+            }
+        }
+
         public function addUsuario(array $datos){
             try{
                 $sql = "INSERT INTO usuarios (nombre, email, telefono, password, categoria, creado_en, actualizado_en, estado, verificado, mensaje_solicitud) VALUES 
@@ -67,6 +86,24 @@
                     $this->setVerificado($datos['verificado']);
                     $this->setMensaje_solicitud($datos['mensaje_solicitud']);
                     return $this;
+                }
+            }
+            catch(PDOException $e){
+                Logger::error("ProductoModel - addUsuario - " . $e->getMessage(), "Posible desconexión");
+                ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
+            }
+        }
+
+        public function deleteUsuario(int $id_usuario){
+            try{
+                $sql = "DELETE FROM usuarios WHERE id_usuario = :id_usuario";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
+                if(!$stmt->execute()){
+                    return false;
+                }
+                else{
+                    return true;
                 }
             }
             catch(PDOException $e){

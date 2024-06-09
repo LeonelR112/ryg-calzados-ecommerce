@@ -51,5 +51,40 @@
                 redirectWitchToast("auth/usuarios/nuevo-usuario", $datos_noti);
             }
         }
+
+        static function borrarUnUsuario(){
+            $UsuarioModel = new UsuarioModel;
+            $id_usuario = (int) filter_var($_POST['id_usuario'], FILTER_SANITIZE_NUMBER_INT);
+            $usuario_existe = $UsuarioModel->getUsuario($id_usuario);  
+            if($usuario_existe){
+                if($UsuarioModel->deleteUsuario($id_usuario)){
+                    $datos_noti = [
+                        "tipo" => "success",
+                        "title" => "Registro borrado",
+                        "msg" => "Se ha eliminado el registro de <b>". $usuario_existe['nombre'] ."</b> de forma permanente.",
+                        "time" => 8000
+                    ];
+                    redirectWitchToast("auth/usuarios", $datos_noti);
+                }
+                else{
+                    $datos_noti = [
+                        "tipo" => "danger",
+                        "title" => "Error!",
+                        "msg" => "Ha ocurrido un error al intentar borrar este registro, intente nuevamente. Si esto persiste, el programa necesita una revisión",
+                        "time" => 8000
+                    ];
+                    redirectWitchToast("auth/usuarios", $datos_noti);
+                }
+            }
+            else{
+                $datos_noti = [
+                    "tipo" => "danger",
+                    "title" => "Error!",
+                    "msg" => "No se ha encontrado el usuario con id " . $id_usuario . " en el sistema. Si esto es frecuente, por favor revise el programa.",
+                    "time" => 8000
+                ];
+                redirectWitchToast("auth/usuarios", $datos_noti);
+            }
+        }
     }
  ?>

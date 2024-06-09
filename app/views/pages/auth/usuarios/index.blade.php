@@ -40,6 +40,9 @@
         </div>
         <div id="paginador"></div>
     </section>
+    <form action="{{route('auth/usuarios/eliminar-usuario')}}" method="POST" id="form_delete">
+        <input type="hidden" name="id_usuario" id="input_del_id_usario">
+    </form>
 @endsection
 @section('footer-scripts')
     {!! paginationJS() !!}
