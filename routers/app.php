@@ -32,6 +32,14 @@
     $Router->get("auth/usuarios/nuevo-usuario", "UsuarioController@formNuevoUsuario");
     $Router->post("auth/usuarios/crear-usuario", "UsuarioController@crearNuevoUsuario");
     $Router->post("auth/usuarios/eliminar-usuario", "UsuarioController@borrarUnUsuario");
+    $Router->get("usuarios/editar/{id}", "UsuarioController@formModificarUsuario");
+    $Router->post("auth/usuarios/modificar-usuario", "UsuarioController@modificarUsuario");
+
+    ## Productos
+    $Router->get("/auth/adm-productos", "MisProductosController@renderIndex");
+
+        // Categorías
+        $Router->get("auth/productos/categorias", "CategoriaController@renderIndex");
 
     $Router->get("auth/log-out", "LoginController@cerrarSesion");
     $Router->run();

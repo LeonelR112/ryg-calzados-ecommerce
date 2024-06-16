@@ -39,14 +39,14 @@ function obtenerFilasDeLaTabla(array_usuarios){
                 <td>${usuario.id_usuario}</td>
                 <td>${usuario.nombre}</td>
                 <td>${usuario.email}</td>
-                <td>${usuario.telefono === 0 ? usuario.telefono : `<span class="small text-muted fst-italic" title="Este usuario no incluyó su teléfono">- No especifica -</span>`}</td>
+                <td>${usuario.telefono == 0 ? `<span class="small text-muted fst-italic" title="Este usuario no incluyó su teléfono">- No especifica -</span>` : usuario.telefono}</td>
                 <td>${obtenerCategoriaSpan(usuario.categoria)}</td>
                 <td>${usuario.creado_en.split("-").reverse().join("/")}</td>
                 <td>${usuario.estado == 'A' ? 'Activo' : 'Inactivo'}</td>
                 <td class="text-center">${usuario.verificado == 'S' ? `<i class="bi bi-check-circle-fill text-success fs-3" title="Este usuario fue verificado"></i>` : `<i class="bi bi-x-circle-fill text-danger fs-3" title="Este usuario no fue verificado aún"></i>`}</td>
                 <td class="text-end">
                     <button class="btn btn-info btn-sm" tupe="button" onclick="verDetallesDeUnUsuario('${usuario.id_usuario}')" title="Ver con más detalles"><i class="bi bi-list-task"></i></button>
-                    <a class="btn btn-primary btn-sm" href="#" title="Editar"><i class="bi bi-pencil"></i></a>
+                    <a class="btn btn-primary btn-sm" href="${MAIN_URL}usuarios/editar/${usuario.id_usuario}" title="Editar"><i class="bi bi-pencil"></i></a>
                     <button class="btn btn-danger btn-sm" type="button" id="button_del_${usuario.id_usuario}" onclick="borrarUsuario('${usuario.id_usuario}')" title="Borrar usuario"><i class="bi bi-trash"></i></button>
                 </td>
             </tr>
@@ -65,7 +65,7 @@ function verDetallesDeUnUsuario(id_usuario){
                     <li class="list-group-item"><span class="text-muted">ID: </span>${usuario.id_usuario}</li>
                     <li class="list-group-item"><span class="text-muted">Nombre: </span>${usuario.nombre}</li>
                     <li class="list-group-item"><span class="text-muted">Email: </span>${usuario.email}</li>
-                    <li class="list-group-item"><span class="text-muted">Teléfono: </span>${usuario.telefono == 0 ? `<span class="text-muted fst-italic small">- No especificó -</span>` : usuario.telefono}</li>
+                    <li class="list-group-item"><span class="text-muted">Teléfono: </span>${usuario.telefono != 0 ? usuario.telefono :  `<span class="text-muted fst-italic small">- No especificó -</span>`}</li>
                 </ul>
             </div>
             <div class="col-12 col-md-6 mb-3">

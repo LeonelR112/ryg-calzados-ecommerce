@@ -94,6 +94,41 @@
             }
         }
 
+        public function updateUsuario(array $datos){
+            try{
+                $sql = "UPDATE usuarios SET nombre = :nombre, email = :email, telefono = :telefono, password = :password, categoria = :categoria, actualizado_en = :actualizado_en, estado = :estado, verificado = :verificado WHERE id_usuario = :id_usuario";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(":nombre", $datos['nombre'], PDO::PARAM_STR);
+                $stmt->bindParam(":email", $datos['email'], PDO::PARAM_STR);
+                $stmt->bindParam(":telefono", $datos['telefono'], PDO::PARAM_INT);
+                $stmt->bindParam(":password", $datos['contrasena'], PDO::PARAM_STR);
+                $stmt->bindParam(":categoria", $datos['categoria'], PDO::PARAM_INT);
+                $stmt->bindParam(":actualizado_en", $datos['actualizado_en'], PDO::PARAM_STR);
+                $stmt->bindParam(":estado", $datos['estado'], PDO::PARAM_STR);
+                $stmt->bindParam(":verificado", $datos['verificado'], PDO::PARAM_STR);
+                $stmt->bindParam("id_usuario", $datos['id_usuario'], PDO::PARAM_INT);
+                if(!$stmt->execute()){
+                    return false;
+                }
+                else{
+                    $this->setId_usuario($datos['id_usuario']);
+                    $this->setNombre($datos['nombre']);
+                    $this->setEmail($datos['email']);
+                    $this->setTelefono($datos['telefono']);
+                    $this->setPassword($datos['contrasena']);
+                    $this->setCategoria($datos['categoria']);
+                    $this->setActualizado_en($datos['actualizado_en']);
+                    $this->setEstado($datos['estado']);
+                    $this->setVerificado($datos['verificado']);
+                    return $this;
+                }
+            }
+            catch(PDOException $e){
+                Logger::error("ProductoModel - updateUsuario - " . $e->getMessage(), "Posible desconexión");
+                ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
+            }
+        }
+
         public function deleteUsuario(int $id_usuario){
             try{
                 $sql = "DELETE FROM usuarios WHERE id_usuario = :id_usuario";

@@ -25,7 +25,8 @@
                 redirectWithNotification($datos_noti, "ingresar");
             }
             $datos['contrasena_encriptada'] = $Sed->encryption($datos['contrasena']);
-            if($datos['contrasena_encriptada'] === $registro_encontrado_con_este_email['password']){
+            $contrasena_desencriptada = $registro_encontrado_con_este_email['password'];
+            if($contrasena_desencriptada === $registro_encontrado_con_este_email['password']){
                 // Usuario reconocido. Verificar si está habilitado
                 if($registro_encontrado_con_este_email['estado'] == "A"){
                     // Usuario aceptado

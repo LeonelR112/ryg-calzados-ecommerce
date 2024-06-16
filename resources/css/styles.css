@@ -64,6 +64,14 @@ main{
     font-weight: 700;
 }
 
+.card-selector{
+    transition: all ease-in-out 250ms;
+}
+
+.card-selector:hover{
+    transform: scale(1.08);
+}
+
 /* Spinners loading */
 /* HTML: <div class="loader"></div> */
 .loader-1 {
