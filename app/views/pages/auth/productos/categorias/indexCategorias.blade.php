@@ -1,6 +1,9 @@
 @extends('templates.mainTemplateAuth')
 @section('title', 'R&G - Productos')
 @section('title-page', 'CATEGORIAS')
+@section('header-scripts')
+    {!! paginationCSS() !!}
+@endsection
 @section('content')
     <section class="row m-0 g-3 p-2">
         <div class="col-12">
@@ -40,5 +43,9 @@
                 </table>
             </article>
         </div>
+        <div class="col-12" id="paginador"></div>
     </section>
+@endsection
+@section('footer-scripts')
+    {!! paginationJS() !!}
 @endsection

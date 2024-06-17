@@ -158,8 +158,8 @@
         echo '<script src="'. MAIN_URL. 'resources/js/lightbox.js"></script>';
     }
 
-    function getFilesOnlyImgsFromMediaFolder(){
-        $list_files_folder = scandir(__DIR__ . "/../../media");
+    function getImagesFromMediaFolder(string $dir_folder){
+        $list_files_folder = scandir(__DIR__ . "/../../public/media/" . $dir_folder);
         $preg_imgs = "/(.gif|.png|.jpg|.jpeg|.gif)$/";
         $final_list = [];
         foreach ($list_files_folder as $file) {
@@ -171,6 +171,19 @@
             }
         }
         return $final_list;
+    }
+
+    function getImagesListTidy(array $list_images, string $url_dir){
+        $list_images_formated = [];
+        foreach($list_images as $image_name) {
+            $pre_data = [
+                "_id" => generateRandomString(25),
+                "name" => $image_name,
+                "url_image" => MAIN_URL . $url_dir . $image_name
+            ];
+            $list_images_formated[] = $pre_data;
+        }
+        return $list_images_formated;
     }
 
     /* Obtener nombre de una url de un archivo */

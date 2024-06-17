@@ -36,7 +36,7 @@
                     <p class="mb-0 small">Administrador de fotos para productos y categorías</p>
                     <p class="mb-0 text-center small text-muted fst-italic"><i class="bi bi-hand-index"></i> Click para entrar</p>
                 </div>
-                <a href="#" class="stretched-link"></a>
+                <a href="{{route('auth/productos/imagenes')}}" class="stretched-link"></a>
             </div>
         </article>
     </section>

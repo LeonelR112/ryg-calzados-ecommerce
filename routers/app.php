@@ -41,6 +41,9 @@
         // Categorías
         $Router->get("auth/productos/categorias", "CategoriaController@renderIndex");
 
+        // Imagenes
+        $Router->get('auth/productos/imagenes', "ImagenesController@renderIndex");
+
     $Router->get("auth/log-out", "LoginController@cerrarSesion");
     $Router->run();
 ?>
