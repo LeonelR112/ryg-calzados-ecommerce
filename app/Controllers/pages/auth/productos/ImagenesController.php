@@ -12,5 +12,9 @@
                 "json_imagenes" => $json_imagenes
             ]);
         }
+
+        static function subirImagenes(){
+            var_dump($_FILES);
+        }
     }
 ?>

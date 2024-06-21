@@ -43,6 +43,7 @@
 
         // Imagenes
         $Router->get('auth/productos/imagenes', "ImagenesController@renderIndex");
+        $Router->post("auth/productos/imagenes/subir-imagenes", "ImagenesController@subirImagenes");
 
     $Router->get("auth/log-out", "LoginController@cerrarSesion");
     $Router->run();
