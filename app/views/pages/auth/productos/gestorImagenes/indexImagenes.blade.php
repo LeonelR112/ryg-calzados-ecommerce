@@ -3,6 +3,7 @@
 @section('title-page', 'CATEGORIAS')
 @section('header-scripts')
     {!! paginationCSS() !!}
+    {!! lightboxCSS() !!}
 @endsection
 @section('content')
     <section class="row m-0 g-3 p-2">
@@ -30,6 +31,9 @@
         </div>
         <div class="col-12 my-2" id="paginador"></div>
     </section>
+    <form action="{{route('auth/productos/imagenes/borrar-imagen')}}" method="POST" id="form_del">
+        <input type="hidden" name="name_file" id="input_del_name_file">
+    </form>
 @endsection
 @section("modals")
 <!-- Modal form imagnes-->
@@ -49,7 +53,7 @@
                                 <i class="bi bi-image"></i><i class="bi bi-hand-index"></i> Seleccionar imágenes
                             </label>
                             <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>
-                            <p class="text-center text-small">Solo las imágnes con extensión <b>bmp, gif, jpg y jpeg</b> son válidas para subir.</p>
+                            <p class="text-center text-small">Solo las imágnes con extensión <b>bmp, gif, png, jpg y jpeg</b> son válidas para subir.</p>
                         </div>
                         <div class="col-12">
                             <p class="text-center">Imágenes preparadas para subir:</p>
@@ -67,8 +71,10 @@
 @endsection
 @section('footer-scripts')
     {!! paginationJS() !!}
+    {!! lightboxJS() !!}
     <script>
         const JSON_IMAGENES = {!! $json_imagenes !!};
+        const DIR_MEDIA = "{{$route_media}}";
     </script>
     {!! jsFile('functions/pages/productos/gestorImagenes/indexGestorDeImagenes', false) !!}
     {!! jsFile('validadores/pages/auth/productos/validarGestorDeImagenes', false) !!}
