@@ -63,6 +63,9 @@ function obtenerGrillaDeImagenes(array_imgs){
         output_html += `
             <article class="col-6 col-md-4 col-lg-3 col-xxl-2 d-flex justify-content-end align-items-center flex-column">
                 <a href="${img.url_image}" data-lightbox="image-${img._id}" data-title="${img.name}"><img src="${img.url_image}" class="img-fluid rounded shadow-sm mb-1" /></a>
+                <div class="w-100">
+                    <p class="mb-0 text-muted small text-center text-card">${img.name}</p>
+                </div>
                 <div class="text-center w-100">
                     <button class="btn btn-danger btn-sm" onclick="borrarImagen('${img._id}')" id="btn_del_${img._id}" type="button" title="Borrar ${img.name}"><i class="bi bi-trash"></i> Borrar</button>
                 </div>

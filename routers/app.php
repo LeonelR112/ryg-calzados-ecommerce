@@ -40,6 +40,7 @@
 
         // Categorías
         $Router->get("auth/productos/categorias", "CategoriaController@renderIndex");
+        $Router->get("auth/categorias/nueva-categoria", "CategoriaController@formNuevaCategoria");
 
         // Imagenes
         $Router->get('auth/productos/imagenes', "ImagenesController@renderIndex");

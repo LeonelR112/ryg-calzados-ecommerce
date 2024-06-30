@@ -72,6 +72,11 @@ main{
     transform: scale(1.08);
 }
 
+.text-card{
+    word-wrap: break-word;
+    font-size: 12px;
+}
+
 /* Spinners loading */
 /* HTML: <div class="loader"></div> */
 .loader-1 {

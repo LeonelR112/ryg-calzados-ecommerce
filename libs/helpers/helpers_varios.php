@@ -158,6 +158,14 @@
         echo '<script src="'. MAIN_URL. 'resources/js/lightbox.js"></script>';
     }
 
+    function trumbowygCSS(){
+        echo '<link rel="stylesheet" href="'.MAIN_URL.'libs/editorTexto/ui/trumbowyg.css">';
+    }
+
+    function trumbowygJS(){
+        echo '<script src="'. MAIN_URL .'libs/editorTexto/trumbowyg.min.js"></script>';
+    }
+
     function getImagesFromMediaFolder(string $dir_folder){
         $list_files_folder = scandir(__DIR__ . "/../../public/media/" . $dir_folder);
         $preg_imgs = "/(.gif|.png|.jpg|.jpeg|.gif)$/";

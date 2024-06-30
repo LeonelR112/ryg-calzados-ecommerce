@@ -15,7 +15,7 @@
             </nav>              
         </div>
         <div class="col-12 col-md-3 text-center">
-            <a href="#" class="btn btn-primary">+ Nueva categoría</a>
+            <a href="{{route('auth/categorias/nueva-categoria')}}" class="btn btn-primary">+ Nueva categoría</a>
         </div>
         <div class="col-12 col-md-9">
             <div class="input-group">
