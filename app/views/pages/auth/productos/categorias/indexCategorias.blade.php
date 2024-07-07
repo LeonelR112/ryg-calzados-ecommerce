@@ -48,4 +48,7 @@
 @endsection
 @section('footer-scripts')
     {!! paginationJS() !!}
+    <script>
+        const JSON_CATEGORIAS = {!! $json_categorias !!};
+    </script>
 @endsection

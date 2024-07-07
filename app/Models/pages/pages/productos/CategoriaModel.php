@@ -1,5 +1,5 @@
 <?php
-    class CategoriaModel{
+    class CategoriaModel extends ModelTools{
         private $db;
         private $id_categ;
         private $nombrecat;
@@ -10,7 +10,59 @@
         private $visible;
         private $color;
 
-        
+        function __construct(){
+            $this->db = self::conectar();
+        }        
+
+        public function getAllCategorias(){
+            try{
+                $sql = "SELECT * FROM categorias ORDER BY orden ASC";
+                $stmt = $this->db->query($sql);
+                if(!$stmt){
+                    return false;
+                }
+                else{
+                    $registros = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    return $registros;
+                }
+            }
+            catch(PDOException $e){
+                Logger::error("CategoriaModel - getAllCategorias - " . $e->getMessage(), "Posible desconexión");
+                ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
+            }
+        }
+
+        function addCategoria(array $datos){
+            try{
+                $sql = "INSERT INTO categorias (nombrecat, orden, descri_c, descri_l, imagen, visible, color) VALUES (:nombrecat, :orden, :descri_c, :descri_l, :imagen, :visible, :color)";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(":nombrecat", $datos['nombrecat'], PDO::PARAM_STR);
+                $stmt->bindParam(":orden", $datos['orden'], PDO::PARAM_STR);
+                $stmt->bindParam(":descri_c", $datos['descri_c'], PDO::PARAM_STR);
+                $stmt->bindParam(":descri_l", $datos['descri_l'], PDO::PARAM_STR);
+                $stmt->bindParam(":imagen", $datos['imagen'], PDO::PARAM_STR);
+                $stmt->bindParam(":visible", $datos['visible'], PDO::PARAM_STR);
+                $stmt->bindParam(":color", $datos['color'], PDO::PARAM_STR);
+                if(!$stmt->execute()){
+                    return false;
+                }
+                else{
+                    $this->setId_categ($this->db->lastInsertId());
+                    $this->setNombrecat($datos['nombrecat']);
+                    $this->setOrden($datos['orden']);
+                    $this->setDesci_c($datos['descri_c']);
+                    $this->setDescri_l($datos['descri_l']);
+                    $this->setImagen($datos['imagen']);
+                    $this->setVisible($datos['visible']);
+                    $this->setColor($datos['color']);
+                    return $this;
+                }
+            }
+            catch(PDOException $e){
+                Logger::error("CategoriaModel - addCategoria - " . $e->getMessage(), "Posible desconexión");
+                ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
+            }
+        }
 
         /**
          * Get the value of id_categ

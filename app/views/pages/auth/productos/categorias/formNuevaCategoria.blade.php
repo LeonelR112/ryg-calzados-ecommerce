@@ -17,7 +17,7 @@
             </nav>              
         </div>
         <div class="col-12">
-            <form action="#" method="POST">
+            <form action="{{route('auth/categorias/nueva-categoria/guardar')}}" method="POST">
                 <article class="row justify-content-center m-0 g-2">
                     <div class="col-12 col-md-10 col-lg-7 p-2 border shadow-sm">
                         <h5 class="text-center">Nueva categoría</h5>
@@ -77,7 +77,7 @@
                                 <div class="invalir-feedback" id="msgColor"></div>
                             </div>
                             <div class="col-12 my-2 d-flex justify-content-center align-items-center flex-wrap">
-                                <button class="btn btn-primary px-4 m-2" type="submit" title="Guardar">Guardar</button>
+                                <button class="btn btn-primary px-4 m-2" type="submit" id="button_submit" title="Guardar">Guardar</button>
                                 <a href="{{route('auth/productos/categorias')}}" class="btn btn-dark px-2 m-2">Volver</a>
                             </div>
                         </section>
@@ -104,7 +104,7 @@
                                 <input type="text" id="input_search_img" class="form-control" placeholder="" aria-label="">
                             </div>                              
                         </div>
-                        <div class="col-12">
+                        <div class="col-12" style="min-height:350px">
                             <section class="row m-0 g-3" id="content_selector_img"></section>
                         </div>
                         <div class="col-12" id="paginador"></div>
