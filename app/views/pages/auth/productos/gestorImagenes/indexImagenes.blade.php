@@ -21,7 +21,7 @@
         <div class="col-12 col-md-6 col-lg-9">
             <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-search"></i></span>
-                <input type="text" class="form-control" placeholder="Buscar imagenes">
+                <input type="text" class="form-control" id="input_search" placeholder="Buscar imagenes">
             </div>              
         </div>
         <div class="col-12">

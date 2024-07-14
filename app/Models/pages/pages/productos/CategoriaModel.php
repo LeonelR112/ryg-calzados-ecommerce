@@ -32,7 +32,26 @@
             }
         }
 
-        function addCategoria(array $datos){
+        public function getCategoria(int $id_categ){
+            try{
+                $sql = "SELECT * FROM categorias WHERE id_categ = :id_categ";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(":id_categ", $id_categ, PDO::PARAM_INT);
+                if(!$stmt->execute()){
+                    return false;
+                }
+                else{
+                    $registro = $stmt->fetch(PDO::FETCH_ASSOC);
+                    return $registro;
+                }
+            }
+            catch(PDOException $e){
+                Logger::error("CategoriaModel - getCategoria - " . $e->getMessage(), "Posible desconexión");
+                ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
+            }
+        }
+
+        public function addCategoria(array $datos){
             try{
                 $sql = "INSERT INTO categorias (nombrecat, orden, descri_c, descri_l, imagen, visible, color) VALUES (:nombrecat, :orden, :descri_c, :descri_l, :imagen, :visible, :color)";
                 $stmt = $this->db->prepare($sql);
@@ -60,6 +79,57 @@
             }
             catch(PDOException $e){
                 Logger::error("CategoriaModel - addCategoria - " . $e->getMessage(), "Posible desconexión");
+                ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
+            }
+        }
+
+        public function updateCategoria(array $datos){
+            try{
+                $sql = "UPDATE categorias SET nombrecat = :nombrecat, orden = :orden, descri_c = :descri_c, descri_l = :descri_c, imagen = :imagen, visible = :visible, color = :color WHERE id_categ = :id_categ";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(":nombrecat", $datos['nombrecat'], PDO::PARAM_STR);
+                $stmt->bindParam(":orden", $datos['orden'], PDO::PARAM_STR);
+                $stmt->bindParam(":descri_c", $datos['descri_c'], PDO::PARAM_STR);
+                $stmt->bindParam(":descri_l", $datos['descri_l'], PDO::PARAM_STR);
+                $stmt->bindParam(":imagen", $datos['imagen'], PDO::PARAM_STR);
+                $stmt->bindParam(":visible", $datos['visible'], PDO::PARAM_STR);
+                $stmt->bindParam(":color", $datos['color'], PDO::PARAM_STR);
+                $stmt->bindParam(":id_categ", $datos['id_categ'], PDO::PARAM_INT);
+                if(!$stmt->execute()){
+                    return false;
+                }
+                else{
+                    $this->setId_categ($datos['id_categ']);
+                    $this->setNombrecat($datos['nombrecat']);
+                    $this->setOrden($datos['orden']);
+                    $this->setDesci_c($datos['descri_c']);
+                    $this->setDescri_l($datos['descri_l']);
+                    $this->setImagen($datos['imagen']);
+                    $this->setVisible($datos['visible']);
+                    $this->setColor($datos['color']);
+                    return $this;
+                }
+            }
+            catch(PDOException $e){
+                Logger::error("CategoriaModel - updateCategoria - " . $e->getMessage(), "Posible desconexión");
+                ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
+            }
+        }
+
+        public function deleteCategoria(int $id_categ){
+            try{
+                $sql = "DELETE FROM categorias WHERE id_categ = :id_categ";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam("id_categ", $id_categ, PDO::PARAM_INT);
+                if(!$stmt->execute()){
+                    return false;
+                }
+                else{
+                    return true;
+                }
+            }
+            catch(PDOException $e){
+                Logger::error("CategoriaModel - deleteCategoria - " . $e->getMessage(), "Posible desconexión");
                 ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
             }
         }

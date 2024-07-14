@@ -42,6 +42,9 @@
         $Router->get("auth/productos/categorias", "CategoriaController@renderIndex");
         $Router->get("auth/categorias/nueva-categoria", "CategoriaController@formNuevaCategoria");
         $Router->post("auth/categorias/nueva-categoria/guardar", "CategoriaController@guardarNuevaCategoria");
+        $Router->get("auth/productos/categorias/modificar/{id}", "CategoriaController@formModificarCategoria");
+        $Router->post("auth/categorias/modificar-categoria/actualizar", "CategoriaController@actualizarCategoria");
+        $Router->post("auth/productos/categorias/borrar-categoria", "CategoriaController@borrarCategoria");
 
         // Imagenes
         $Router->get('auth/productos/imagenes', "ImagenesController@renderIndex");

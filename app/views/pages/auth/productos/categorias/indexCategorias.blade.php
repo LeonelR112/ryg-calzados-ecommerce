@@ -3,6 +3,8 @@
 @section('title-page', 'CATEGORIAS')
 @section('header-scripts')
     {!! paginationCSS() !!}
+    {!! lightboxCSS() !!}
+    {!! jsFile('classes/FrontTools') !!}
 @endsection
 @section('content')
     <section class="row m-0 g-3 p-2">
@@ -20,7 +22,7 @@
         <div class="col-12 col-md-9">
             <div class="input-group">
                 <span class="input-group-text">Buscar</span>
-                <input type="text" class="form-control" placeholder="Nombre de la categoría" aria-label="Nombre de la categoría">
+                <input type="text" class="form-control" id="input_search" placeholder="Nombre de la categoría" aria-label="Nombre de la categoría">
             </div>              
         </div>
         <div class="col-12">
@@ -32,10 +34,10 @@
                         </tr>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Imagen</th>
+                            <th scope="col" class="text-center">Imagen</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Visible</th>
-                            <th scope="col">color</th>
+                            <th scope="col" class="text-center">Visible</th>
+                            <th scope="col" class="text-center">color</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -45,10 +47,15 @@
         </div>
         <div class="col-12" id="paginador"></div>
     </section>
+    <form action="{{route('auth/productos/categorias/borrar-categoria')}}" method="POST" id="form_del_categ">
+        <input type="hidden" name="id_categ" id="input_del_id_categ">
+    </form>
 @endsection
 @section('footer-scripts')
     {!! paginationJS() !!}
+    {!! lightboxJS() !!}
     <script>
         const JSON_CATEGORIAS = {!! $json_categorias !!};
     </script>
+    {!! jsFile('functions/pages/productos/categorias/indexAbmCategorias', false) !!}
 @endsection

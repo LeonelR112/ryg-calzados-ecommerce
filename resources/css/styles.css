@@ -77,6 +77,13 @@ main{
     font-size: 12px;
 }
 
+.img-card-table{
+    width: auto;
+    height: auto;
+    max-width: 30px;
+    max-height: 35px;
+}
+
 /* Spinners loading */
 /* HTML: <div class="loader"></div> */
 .loader-1 {

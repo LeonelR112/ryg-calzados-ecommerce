@@ -1,6 +1,7 @@
 let content_images = document.getElementById('content_images');
 let form_del = document.getElementById('form_del');
 let input_del_name_file = document.getElementById('input_del_name_file');
+let input_search = document.getElementById('input_search');
 
 function renderImagenes(array_imgs){
     if(array_imgs.length == 0){
@@ -75,6 +76,22 @@ function obtenerGrillaDeImagenes(array_imgs){
     return output_html;
 }
 
+function filtrarImagenes(valor){
+    let valor_filtrar = valor.toLowerCase();
+    if(valor_filtrar.length == 0){
+        renderImagenes(JSON_IMAGENES);
+    }
+    else{
+        let valores_filtrados = [];
+        for(let img of JSON_IMAGENES){
+            let nombre_lower = img.name.toLowerCase();
+            if(nombre_lower.includes(valor)) valores_filtrados.push(img);
+        }
+        renderImagenes(valores_filtrados);
+    }
+}
+
+input_search.addEventListener('keyup', e => filtrarImagenes(e.target.value));
 document.addEventListener('DOMContentLoaded', e => {
     renderImagenes(JSON_IMAGENES);
 })
