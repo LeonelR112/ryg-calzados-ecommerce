@@ -14,7 +14,7 @@
                     <p class="mb-0 small">Ver todos los productos guardados en el sistema</p>
                     <p class="mb-0 text-center small text-muted fst-italic"><i class="bi bi-hand-index"></i> Click para entrar</p>
                 </div>
-                <a href="#" class="stretched-link"></a>
+                <a href="{{route('auth/productos/editor-productos')}}" class="stretched-link"></a>
             </div>
         </article>
         <article class="col-12 col-md-6 col-lg-4 col-xxl-3">

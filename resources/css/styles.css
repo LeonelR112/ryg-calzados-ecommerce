@@ -84,6 +84,14 @@ main{
     max-height: 35px;
 }
 
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.no-resize{
+    resize: none;
+}
+
 /* Spinners loading */
 /* HTML: <div class="loader"></div> */
 .loader-1 {

@@ -38,6 +38,10 @@
     ## Productos
     $Router->get("/auth/adm-productos", "MisProductosController@renderIndex");
 
+        // Editor de productos
+        $Router->get("auth/productos/editor-productos", "EditorProductoController@renderIndex");
+        $Router->get("auth/productos/editor-productos/crear", "EditorProductoController@formNuevoProducto");
+
         // Categorías
         $Router->get("auth/productos/categorias", "CategoriaController@renderIndex");
         $Router->get("auth/categorias/nueva-categoria", "CategoriaController@formNuevaCategoria");

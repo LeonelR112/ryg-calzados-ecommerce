@@ -159,11 +159,38 @@
     }
 
     function trumbowygCSS(){
-        echo '<link rel="stylesheet" href="'.MAIN_URL.'libs/editorTexto/ui/trumbowyg.css">';
+        echo '<link rel="stylesheet" href="'.MAIN_URL.'resources/js/plugins/editorTexto/ui/trumbowyg.min.css">';
     }
 
     function trumbowygJS(){
-        echo '<script src="'. MAIN_URL .'libs/editorTexto/trumbowyg.min.js"></script>';
+        echo '<script src="'. MAIN_URL .'resources/js/plugins/editorTexto/trumbowyg.min.js"></script>';
+    }
+
+    function trumbowygPluginJS($nombre_plugin_js){
+        if($nombre_plugin_js == 'color'){
+            return '<script src="'. MAIN_URL .'resources/js/plugins/editorTexto/plugins/colors/trumbowyg.colors.min.js"></script>';
+        }
+        else if($nombre_plugin_js == 'emoji'){
+            return '<script src="'. MAIN_URL .'resources/js/plugins/editorTexto/plugins/emoji/trumbowyg.emoji.min.js"></script>';
+        }
+        else if($nombre_plugin_js == 'resizeimg'){
+            return '<script src="'. MAIN_URL .'resources/js/plugins/editorTexto/plugins/resizimg/trumbowyg.resizimg.min.js"></script>';
+        }
+        else{
+            return null;
+        }
+    }
+
+    function trumbowygPluginCSS($nombre_plugin_css){
+        if($nombre_plugin_css == 'color'){
+            return '<link rel="stylesheet" href="'.MAIN_URL.'resources/js/plugins/editorTexto/plugins/colors/ui/trumbowyg.colors.min.css">';
+        }
+        else if($nombre_plugin_css == 'emoji'){
+            return '<link rel="stylesheet" href="'.MAIN_URL.'resources/js/plugins/editorTexto/plugins/emoji/ui/trumbowyg.emoji.min.css">';
+        }
+        else{
+            return null;
+        }
     }
 
     function getImagesFromMediaFolder(string $dir_folder){
@@ -187,7 +214,8 @@
             $pre_data = [
                 "_id" => generateRandomString(25),
                 "name" => $image_name,
-                "url_image" => MAIN_URL . $url_dir . $image_name
+                "url_image" => MAIN_URL . $url_dir . $image_name,
+                "principal" => "N"
             ];
             $list_images_formated[] = $pre_data;
         }

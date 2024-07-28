@@ -22,6 +22,7 @@
         <main>
             @yield('content')
         </main>
+        @yield("modals")
         @include('components.footer')
         {!! jsFile('popper.min') !!}
         {!! jsFile('bootstrap.min') !!}
