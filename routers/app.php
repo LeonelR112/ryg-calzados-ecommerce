@@ -41,6 +41,7 @@
         // Editor de productos
         $Router->get("auth/productos/editor-productos", "EditorProductoController@renderIndex");
         $Router->get("auth/productos/editor-productos/crear", "EditorProductoController@formNuevoProducto");
+        $Router->post("auth/producto/editar-productos/crear-producto", "EditorProductoController@crearNuevoProducto");
 
         // Categorías
         $Router->get("auth/productos/categorias", "CategoriaController@renderIndex");

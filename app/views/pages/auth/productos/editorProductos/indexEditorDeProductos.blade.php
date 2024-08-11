@@ -45,3 +45,9 @@
         <div class="col-12 p-2" id="paginador"></div>
     </section>
 @endsection
+@section("footer-scripts")
+    <script>
+        const JSON_PRODUCTOS = {!! $json_productos !!};
+    </script>
+    {!! jsFile('functions/pages/productos/editorProductos/indexEditorProductos', false) !!}
+@endsection

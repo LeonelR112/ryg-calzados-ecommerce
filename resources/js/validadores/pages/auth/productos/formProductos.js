@@ -207,6 +207,7 @@ function checkInput(valor, caso){
             }
         break;
         case "orden":
+            console.log(valor);
             status_input = ValidadorForm.validarNumero(valor);
             if(status_input.valid){
                 VALID_STATUS.orden = true;
@@ -305,7 +306,7 @@ button_selector_img.addEventListener('click', e => $("#modalSelectorDeImagenes")
 input_search_img.addEventListener('keyup', e  => SelectorIMGController.filtrarImagenes(e.target.value));
 input_nombreprod.addEventListener('change', e => checkInput(e.target.value, 'nombreprod'));
 input_nro_art.addEventListener('change', e => checkInput(e.target.value, 'art'));
-input_orden.addEventListener('change', e => checkInput(e.target.valkue, 'orden'));
+input_orden.addEventListener('change', e => checkInput(e.target.value, 'orden'));
 input_precio.addEventListener('change', e => checkInput(e.target.value, 'precio'));
 input_precio_unitario.addEventListener('change', e => checkInput(e.target.value, 'precio_unit'));
 input_descri_c.addEventListener('change', e => checkInput(e.target.value, 'descri_c'));
