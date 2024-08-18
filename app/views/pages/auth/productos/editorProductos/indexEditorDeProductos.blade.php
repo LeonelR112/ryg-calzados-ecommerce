@@ -1,6 +1,10 @@
 @extends('templates.mainTemplateAuth')
 @section('title', 'R&G - Editor de Productos')
 @section('title-page', 'PRODUCTOS')
+@section('header-scripts')
+    {!! cssFile('lightbox') !!}
+    {!! jsFile('classes/FrontTools') !!}
+@endsection
 @section('content')
     <section class="row m-0 justify-content-center p-4">
         <div class="col-12">
@@ -32,13 +36,14 @@
                             <th scope="col">Art.</th>
                             <th scope="col" class="text-center">Imagen</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Stock</th>
-                            <th scope="col">Visible</th>
-                            <th scope="col">Precio</th>
-                            <th scope="col">Precio Unit.</th>
+                            <th scope="col" class="text-center">Stock</th>
+                            <th scope="col" class="text-center">Visible</th>
+                            <th scope="col" class="text-center">Precio</th>
+                            <th scope="col" class="text-center" title="Precio por unidad">Precio Unid.</th>
                             <th scope=""></th>
                         </tr>
                     </thead>
+                    <tbody id="tbody_productos"></tbody>
                 </table>
             </article>
         </div>
@@ -46,6 +51,7 @@
     </section>
 @endsection
 @section("footer-scripts")
+    {!! jsFile('lightbox') !!}
     <script>
         const JSON_PRODUCTOS = {!! $json_productos !!};
     </script>

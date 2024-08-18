@@ -36,6 +36,48 @@
             }
         }
 
+        public function getAllImagenesDeUnProducto(int $id_producto){
+            try{
+                $sql = "SELECT * FROM pro_img WHERE id_producto = :id_producto";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(":id_producto", $id_producto, PDO::PARAM_INT);
+                if(!$stmt->execute()){
+                    $errorInfo = $stmt->errorInfo();
+                    Logger::error("Error en la ejecución de la consulta en EditorProductoModel: " . implode(", ", $errorInfo), "Error en PDO");
+                    return false;
+                }
+                else{
+                    $registros = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    return $registros;
+                }
+            }
+            catch(PDOException $e){
+                Logger::error("EditorProductoModel - getAllImagenesDeUnProducto - " . $e->getMessage(), "Posible desconexión");
+                ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
+            }
+        }
+
+        public function getAllCategoriasAsignadasEnUnProducto(int $id_producto){
+            try{
+                $sql = "SELECT * FROM pro_cat AS prc INNER JOIN categorias AS cat ON cat.id_categ = prc.id_categ WHERE prc.id_producto = :id_producto";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(":id_producto", $id_producto, PDO::PARAM_INT);
+                if(!$stmt->execute()){
+                    $errorInfo = $stmt->errorInfo();
+                    Logger::error("Error en la ejecución de la consulta en EditorProductoModel: " . implode(", ", $errorInfo), "Error en PDO");
+                    return false;
+                }
+                else{
+                    $registros = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    return $registros;
+                }
+            }
+            catch(PDOException $e){
+                Logger::error("EditorProductoModel - getAllCategoriasAsignadasEnUnProducto - " . $e->getMessage(), "Posible desconexión");
+                ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
+            }
+        }
+
         public function getAllProductos(){
             try{
                 $sql = "SELECT pro.id_producto, pro.nro_art, pro.nombreprod, pro.precio, pro.precio_unitario, pro.stock, pro.descri_c, pro.descri_l, pro.orden, pro.tags, pro.talles, pro.visible, COALESCE(img_s.url_img, img_n.url_img) AS imagen FROM productos AS pro LEFT OUTER JOIN (SELECT id_producto, url_img FROM pro_img WHERE principal = 'S') AS img_s ON pro.id_producto = img_s.id_producto LEFT OUTER JOIN (SELECT id_producto, url_img FROM pro_img WHERE principal = 'N') AS img_n ON pro.id_producto = img_n.id_producto ORDER BY pro.id_producto DESC";
@@ -50,6 +92,27 @@
             }
             catch(PDOException $e){
                 Logger::error("EditorProductoModel - getAllProductos - " . $e->getMessage(), "Posible desconexión");
+                ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
+            }
+        }
+
+        public function getProducto(int $id_producto){
+            try{
+                $sql = "SELECT * FROM productos WHERE id_producto = :id_producto";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(":id_producto", $id_producto, PDO::PARAM_INT);
+                if(!$stmt->execute()){
+                    $errorInfo = $stmt->errorInfo();
+                    Logger::error("Error en la ejecución de la consulta en EditorProductoModel: " . implode(", ", $errorInfo), "Error en PDO");
+                    return false;
+                }
+                else{
+                    $registro = $stmt->fetch(PDO::FETCH_ASSOC);
+                    return $registro;
+                }
+            }
+            catch(PDOException $e){
+                Logger::error("EditorProductoModel - getProducto - " . $e->getMessage(), "Posible desconexión");
                 ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
             }
         }
@@ -92,6 +155,37 @@
             }
             catch(PDOException $e){
                 Logger::error("EditorProductoModel - addProducto - " . $e->getMessage(), "Posible desconexión");
+                ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
+            }
+        }
+
+        public function addCategoriasDeUnProducto(array $ids_categs, int $id_producto){
+            try{    
+                $total_ids = count($ids_categs);
+                $procesados = 0;
+                $sql = "INSERT INTO pro_cat (id_producto, id_categ) VALUES ";
+                foreach ($ids_categs as $key => $id_categ) {
+                    $sql .= "(:id_producto". $key .", :id_categ". $key .")";
+                    $procesados ++;
+                    if($procesados < $total_ids) $sql .= ", "; 
+                }
+                $stmt = $this->db->prepare($sql);
+                foreach($ids_categs as $key => $id_categ) {
+                    $stmt->bindParam(":id_producto" . $key, $id_producto, PDO::PARAM_INT);
+                    $stmt->bindParam(":id_categ" . $key, $id_categ, PDO::PARAM_INT);
+                }
+                if(!$stmt->execute()){
+                    $errorInfo = $stmt->errorInfo();
+                    Logger::error("Error en la ejecución de la consulta en EditorProductoModel: " . implode(", ", $errorInfo), "Error en PDO");
+                    return false;
+                }
+                else{
+                    return true;
+                }
+
+            }
+            catch(PDOException $e){
+                Logger::error("EditorProductoModel - addCategoriasDeUnProducto - " . $e->getMessage(), "Posible desconexión");
                 ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
             }
         }
