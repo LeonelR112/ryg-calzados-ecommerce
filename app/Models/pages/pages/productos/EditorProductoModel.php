@@ -80,7 +80,7 @@
 
         public function getAllProductos(){
             try{
-                $sql = "SELECT pro.id_producto, pro.nro_art, pro.nombreprod, pro.precio, pro.precio_unitario, pro.stock, pro.descri_c, pro.descri_l, pro.orden, pro.tags, pro.talles, pro.visible, COALESCE(img_s.url_img, img_n.url_img) AS imagen FROM productos AS pro LEFT OUTER JOIN (SELECT id_producto, url_img FROM pro_img WHERE principal = 'S') AS img_s ON pro.id_producto = img_s.id_producto LEFT OUTER JOIN (SELECT id_producto, url_img FROM pro_img WHERE principal = 'N') AS img_n ON pro.id_producto = img_n.id_producto ORDER BY pro.id_producto DESC";
+                $sql = "SELECT pro.id_producto, pro.nro_art, pro.nombreprod, pro.precio, pro.precio_unitario, pro.stock, pro.descri_c, pro.descri_l, pro.orden, pro.tags, pro.talles, pro.visible, COALESCE(img_s.url_img, img_n.url_img) AS imagen FROM productos AS pro LEFT OUTER JOIN (SELECT id_producto, url_img FROM pro_img WHERE principal = 'S') AS img_s ON pro.id_producto = img_s.id_producto LEFT OUTER JOIN (SELECT id_producto, url_img FROM pro_img WHERE principal = 'N') AS img_n ON pro.id_producto = img_n.id_producto GROUP BY pro.id_producto ORDER BY pro.id_producto DESC";
                 $stmt = $this->db->query($sql);
                 if(!$stmt){
                     return false;
@@ -221,6 +221,47 @@
             }
         }
 
+        public function updateProducto(array $datos){
+            try{
+                $sql = "UPDATE productos SET nro_art = :nro_art, nombreprod = :nombreprod, precio = :precio, precio_unitario = :precio_unitario, stock = :stock, descri_c = :descri_c, descri_l = :descri_l, orden = :orden, talles = :talles, visible = :visible WHERE id_producto = :id_producto";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(":nro_art", $datos['nro_art'], PDO::PARAM_INT);
+                $stmt->bindParam(":nombreprod", $datos['nombreprod'], PDO::PARAM_STR);
+                $stmt->bindParam(":precio", $datos['precio'], PDO::PARAM_STR);
+                $stmt->bindParam(":precio_unitario", $datos['precio_unitario'], PDO::PARAM_STR);
+                $stmt->bindParam(":stock", $datos['stock'], PDO::PARAM_STR);
+                $stmt->bindParam(":descri_c", $datos['descri_c'], PDO::PARAM_STR);
+                $stmt->bindParam(":descri_l", $datos['descri_l']);
+                $stmt->bindParam(":orden", $datos['orden'], PDO::PARAM_STR);
+                $stmt->bindParam(":talles", $datos['talles'], PDO::PARAM_STR);
+                $stmt->bindParam(":visible", $datos['visible'], PDO::PARAM_STR);
+                $stmt->bindParam(":id_producto", $datos['id_producto'], PDO::PARAM_INT);
+                if(!$stmt->execute()){
+                    $errorInfo = $stmt->errorInfo();
+                    Logger::error("Error en la ejecución de la consulta en EditorProductoModel: " . implode(", ", $errorInfo), "Error en PDO");
+                    return false;
+                }
+                else{
+                    $this->setId_producto($datos['id_producto']);
+                    $this->setNro_art($datos['nro_art']);
+                    $this->setNombreprod($datos['nombreprod']);
+                    $this->setPrecio($datos['precio']);
+                    $this->setPrecio_unitario($datos['precio_unitario']);
+                    $this->setStock($datos['stock']);
+                    $this->setDescri_c($datos['descri_c']);
+                    $this->setDescri_l($datos['descri_l']);
+                    $this->setOrden($datos['orden']);
+                    $this->setTalles($datos['talles']);
+                    $this->setVisible($datos);
+                    return $this;
+                }
+            }
+            catch(PDOException $e){
+                Logger::error("EditorProductoModel - updateProducto - " . $e->getMessage(), "Posible desconexión");
+                ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
+            }
+        }
+
         public function deleteProducto(int $id_producto){
             try{
                 $sql = "DELETE FROM productos WHERE id_producto = :id_producto";
@@ -237,6 +278,46 @@
             }
             catch(PDOException $e){
                 Logger::error("EditorProductoModel - deleteProducto - " . $e->getMessage(), "Posible desconexión");
+                ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
+            }
+        }
+
+        public function deleteCategoriasAsignadas(int $id_producto){
+            try{
+                $sql = "DELETE FROM pro_cat WHERE id_producto = :id_producto";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(":id_producto", $id_producto, PDO::PARAM_INT);
+                if(!$stmt->execute()){
+                    $errorInfo = $stmt->errorInfo();
+                    Logger::error("Error en la ejecución de la consulta en EditorProductoModel: " . implode(", ", $errorInfo), "Error en PDO");
+                    return false;
+                }
+                else{
+                    return true;
+                }
+            }
+            catch(PDOException $e){
+                Logger::error("EditorProductoModel - deleteCategoriasAsignadas - " . $e->getMessage(), "Posible desconexión");
+                ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
+            }
+        }
+
+        public function deleteImagenesAsignadas(int $id_producto){
+            try{
+                $sql = "DELETE FROM pro_imagen WHERE id_producto = :id_producto";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(":id_producto", $id_producto, PDO::PARAM_INT);
+                if(!$stmt->execute()){
+                    $errorInfo = $stmt->errorInfo();
+                    Logger::error("Error en la ejecución de la consulta en EditorProductoModel: " . implode(", ", $errorInfo), "Error en PDO");
+                    return false;
+                }
+                else{
+                    return true;
+                }
+            }
+            catch(PDOException $e){
+                Logger::error("EditorProductoModel - deleteImagenesAsignadas - " . $e->getMessage(), "Posible desconexión");
                 ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
             }
         }

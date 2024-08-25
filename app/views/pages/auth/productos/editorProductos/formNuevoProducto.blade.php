@@ -183,7 +183,7 @@
                             <textarea name="json_imagenes_prod" id="json_input_imagenes_prod" class="d-none" cols="30" rows="10"></textarea>
                             <div class="col-12 d-flex justify-content-center align-items-center flex-wrap">
                                 <button class="btn btn-primary px-4 m-2" id="button_submit" type="submit">Guardar</button>
-                                <a href="{{route('auth/productos')}}" class="btn btn-dark px-3 m-2">Cancelar</a>
+                                <a href="{{route('auth/productos/editor-productos')}}" class="btn btn-dark px-3 m-2">Cancelar</a>
                             </div>
                         </section>
                     </div>
