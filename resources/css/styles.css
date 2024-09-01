@@ -84,6 +84,13 @@ main{
     max-height: 35px;
 }
 
+.img-card-table-md{
+    width: auto;
+    height: auto;
+    max-width: 130px;
+    max-height: 135px;
+}
+
 .cursor-pointer{
     cursor: pointer;
 }

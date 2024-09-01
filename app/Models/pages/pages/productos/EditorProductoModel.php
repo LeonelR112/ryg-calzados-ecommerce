@@ -304,7 +304,7 @@
 
         public function deleteImagenesAsignadas(int $id_producto){
             try{
-                $sql = "DELETE FROM pro_imagen WHERE id_producto = :id_producto";
+                $sql = "DELETE FROM pro_img WHERE id_producto = :id_producto";
                 $stmt = $this->db->prepare($sql);
                 $stmt->bindParam(":id_producto", $id_producto, PDO::PARAM_INT);
                 if(!$stmt->execute()){

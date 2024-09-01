@@ -147,7 +147,6 @@
             // Actualizar las categorías asignadas del producto
             if(!$EditorProductoModel->deleteCategoriasAsignadas($datos['id_producto'])){
                 // Falló borrado de categorías antiguas
-                die;
                 Logger::warning("Falló actualizar categorías de un producto", "id_producto = " . $datos['id_producto']);
                 redirectWitchToast("auth/productos/editor-productos", [
                     "tipo" => "danger",
@@ -159,7 +158,6 @@
             }
             if(!$EditorProductoModel->addCategoriasDeUnProducto($datos['ids_categ'], $datos['id_producto'])){
                 // Falló guardado de categorías
-                die;
                 Logger::warning("Falló actualizar categorías de un producto", "id_producto = " . $datos['id_producto']);
                 redirectWitchToast("auth/productos/editor-productos", [
                     "tipo" => "danger",
@@ -187,7 +185,7 @@
                 redirectWitchToast( "auth/productos/editor-productos", [
                     "tipo" => "success",
                     "title" => "Actualizado!",
-                    "msg" => "El producto <b>". $datos['nombreprod'] ."</b> fue creado actualizado correctamente.",
+                    "msg" => "El producto <b>". $datos['nombreprod'] ."</b> fue actualizado correctamente.",
                     "time" => 8000
                 ]);
                 exit;
@@ -197,6 +195,33 @@
                     "tipo" => "danger",
                     "title" => "Error!",
                     "msg" => "Ha ocurrido un problema al intentar actualizar el producto. Más info en Logs.",
+                    "time" => 8000
+                ]);
+                exit;
+            }
+        }
+
+        static function borrarProducto(){
+            $EditorProductoModel = new EditorProductoModel;
+            $id_producto = (int) filter_var($_POST['id_producto'], FILTER_SANITIZE_NUMBER_INT);
+            $producto = $EditorProductoModel->getProducto($id_producto);
+            if(!$producto) redirectTo("not-found");
+            if($EditorProductoModel->deleteProducto($id_producto)){
+                if(!$EditorProductoModel->deleteCategoriasAsignadas($id_producto)) Logger::warning("Falló borrado de categorías asignadas de un producto con id_producto " . $id_producto);
+                if(!$EditorProductoModel->deleteImagenesAsignadas($id_producto)) Logger::warning("Falló borrado de imágenes asignadas a un producto con id_producto " . $id_producto);
+                redirectWitchToast( "auth/productos/editor-productos", [
+                    "tipo" => "success",
+                    "title" => "Borrado!",
+                    "msg" => "El producto <b>". $producto['nombreprod'] ."</b> fue eliminado correctamente.",
+                    "time" => 8000
+                ]);
+                exit;
+            }
+            else{
+                redirectWitchToast("auth/productos/editor-productos", [
+                    "tipo" => "danger",
+                    "title" => "Error!",
+                    "msg" => "Ha ocurrido un problema al intentar borrar el producto. Más info en Logs.",
                     "time" => 8000
                 ]);
                 exit;

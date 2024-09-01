@@ -49,6 +49,9 @@
         </div>
         <div class="col-12 p-2" id="paginador"></div>
     </section>
+    <form action="{{route('auth/productos/editor-productos/borrar-producto')}}" method="POST" id="form_del_product">
+        <input type="hidden" name="id_producto" id="input_del_id_producto">
+    </form>
 @endsection
 @section("footer-scripts")
     {!! jsFile('lightbox') !!}

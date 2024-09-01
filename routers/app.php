@@ -44,6 +44,7 @@
         $Router->post("auth/producto/editor-productos/crear-producto", "EditorProductoController@crearNuevoProducto");
         $Router->get("auth/productos/editor-producto/modificar/{id}", "EditorProductoController@formEditarProducto");
         $Router->post("auth/producto/editor-productos/actualiar-producto", "EditorProductoController@actualizarProducto");
+        $Router->post("auth/productos/editor-productos/borrar-producto", "EditorProductoController@borrarProducto");
 
         // Categorías
         $Router->get("auth/productos/categorias", "CategoriaController@renderIndex");
