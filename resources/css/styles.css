@@ -37,6 +37,7 @@ main{
 .title1{
     text-align: center;
     font-size: 35px;
+    font-weight: bold;
 }
 
 .title-product-card{
