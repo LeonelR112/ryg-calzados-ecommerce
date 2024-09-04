@@ -7,7 +7,7 @@
             $categorias = $CategoriaModel->getAllCategorias();
 
             $json_categorias = json_encode($categorias, JSON_INVALID_UTF8_IGNORE);
-            view("pages.auth.productos.categorias.indexCategorias", [
+            view("pages.auth.adm-general.productos.categorias.indexCategorias", [
                 "json_categorias" => $json_categorias
             ]);
         }
@@ -17,7 +17,7 @@
             $imagenes_ordenadas = getImagesListTidy($lista_imagenes, self::URL_MEDIA);
             
             $json_imagenes = json_encode($imagenes_ordenadas, JSON_INVALID_UTF8_IGNORE);
-            view("pages.auth.productos.categorias.formNuevaCategoria", [
+            view("pages.auth.adm-general.productos.categorias.formNuevaCategoria", [
                 "json_imagenes" => $json_imagenes
             ]);
         }
@@ -60,7 +60,7 @@
             $imagenes_ordenadas = getImagesListTidy($lista_imagenes, self::URL_MEDIA);
 
             $json_imagenes = json_encode($imagenes_ordenadas, JSON_INVALID_UTF8_IGNORE);
-            view("pages.auth.productos.categorias.formModificarCategoria", [
+            view("pages.auth.adm-general.productos.categorias.formModificarCategoria", [
                 "categoria" => $categoria,
                 "json_imagenes" => $json_imagenes
             ]);

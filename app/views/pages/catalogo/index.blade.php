@@ -19,7 +19,7 @@
                     <article class="col-12 col-md-6 col-lg-4 col-xxl-3 d-flex justify-content-end align-items-center flex-column">
                         <div class="card position-relative shadow-sm w-100 h-100 overflow-hidden card-selector">
                             <div class="card-body">
-                                <div style="width:100%;height:80px;background-color: {{$categoria['color']}}; position:absolute;top:0px;right:0px;z-index:1;"></div>
+                                <div class="card-color-categ" style="background-color: {{$categoria['color']}};"></div>
                                 <div class="d-flex justify-content-end align-items-center flex-column h-100" style="position: relative;z-index: 2">
                                     <div class="text-center w-100 mb-1">{!! $categoria['imagen'] != '' ? '<img src="'. $categoria['imagen'] .'" alt="img_not_found" class="rounded small img-card-table-md" />' : '<i class="bi bi-card-image display-3"></i>' !!}</div>
                                     <h4 class="text-center w-100 text-wrap">{{$categoria['nombrecat']}}</h4>
@@ -27,7 +27,7 @@
                                     <div class="text-center w-100"><i class="bi bi-hand-index"></i> click para ver</div>
                                 </div>
                             </div>
-                            <a href="#" class="stretched-link"></a>
+                            <a href="{{route('catalogo/ver/' . $categoria['id_categ'])}}" class="stretched-link" style="z-index:3"></a>
                         </div>
                     </article>
                     @endforeach

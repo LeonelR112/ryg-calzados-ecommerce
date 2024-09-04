@@ -4,13 +4,15 @@
 <section class="container mb-3">
     <section class="row m-0 g-3 justify-content-center">
         <div class="col-12 mb-4">
+            <!--
             <p class="text-center">
                 Si no estás registrado, podrás crearte una haciendo click en "crear cuenta" en el botón debajo.<br>
                 Al crearte una cuenta, obtendrás más beneficios como un control de pedidos, pedidos por mayor y descuentos exclusivos.
             </p>
             <div class="text-center">
-                <a href="{{route('registrarse')}}" class="btn btn-primary">Crear cuenta</a>
+                <a href="{{route('')}}" class="btn btn-primary">Crear cuenta</a>
             </div>
+            -->
         </div>
         <div class="col-12 col-md-10 col-lg-8 col-xl-6 border border-dark shadow p-4">
             <h5 class="text-center">Iniciar sesión</h5>

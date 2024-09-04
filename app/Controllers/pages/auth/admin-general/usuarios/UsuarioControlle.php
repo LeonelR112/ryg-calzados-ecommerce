@@ -8,13 +8,13 @@ use Random\Engine\Secure;
             $usuarios_registrados = $UsuarioModel->getAllUsuarios();
 
             $json_usuarios_registrados = json_encode($usuarios_registrados, JSON_INVALID_UTF8_IGNORE);
-            view("pages.auth.usuarios.index", [
+            view("pages.auth.adm-general.usuarios.index", [
                 "json_usuarios_registrados" => $json_usuarios_registrados
             ]);
         }
 
         static function formNuevoUsuario(){
-            view("pages.auth.usuarios.formNuevoUsuario");
+            view("pages.auth.adm-general.usuarios.formNuevoUsuario");
         }
 
         static function crearNuevoUsuario(){
@@ -64,7 +64,7 @@ use Random\Engine\Secure;
             $contrasena_desencriptada = $Sed->decryption($usuario_existe['password']);
             $usuario_existe['password'] = $contrasena_desencriptada;
             
-            view("pages.auth.usuarios.formModificarUsuario", [
+            view("pages.auth.adm-general.usuarios.formModificarUsuario", [
                 "usuario_existe" => $usuario_existe
             ]);
         }

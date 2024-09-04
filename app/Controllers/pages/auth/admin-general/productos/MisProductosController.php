@@ -2,7 +2,7 @@
     class MisProductosController{
         static function renderIndex(){
 
-            view("pages.auth.productos.indexProductos");
+            view("pages.auth.adm-general.productos.indexProductos");
         }
     }
 ?>

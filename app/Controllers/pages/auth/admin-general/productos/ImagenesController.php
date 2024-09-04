@@ -8,7 +8,7 @@
             $imagenes_ordenadas = getImagesListTidy($lista_imagenes, self::URL_MEDIA);
             
             $json_imagenes = json_encode($imagenes_ordenadas, JSON_INVALID_UTF8_IGNORE);
-            view("pages.auth.productos.gestorImagenes.indexImagenes", [
+            view("pages.auth.adm-general.productos.gestorImagenes.indexImagenes", [
                 "json_imagenes" => $json_imagenes,
                 "route_media" => MAIN_URL . self::URL_MEDIA
             ]);

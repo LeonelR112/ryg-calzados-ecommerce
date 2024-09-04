@@ -41,5 +41,24 @@
                 ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
             }
         }
+
+        public function getDetallesDeLaCategoria(int $id_categ){
+            try{
+                $sql = "SELECT * FROM categorias WHERE id_categ = :id_categ";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(":id_categ", $id_categ, PDO::PARAM_INT);
+                if(!$stmt->execute()){
+                    return false;
+                }
+                else{
+                    $registro = $stmt->fetch(PDO::FETCH_ASSOC);
+                    return $registro;
+                }
+            }
+            catch(PDOException $e){
+                Logger::error("CatalogoPublicoModel - getDetallesDeLaCategoria - " . $e->getMessage(), "Posible desconexión");
+                ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
+            }
+        }
     }
 ?>

@@ -5,7 +5,7 @@
             $productos = $EditorProductoModel->getAllProductos();
 
             $json_productos = json_encode($productos, JSON_INVALID_UTF8_IGNORE);
-            view("pages.auth.productos.editorProductos.indexEditorDeProductos", [
+            view("pages.auth.adm-general.productos.editorProductos.indexEditorDeProductos", [
                 "json_productos" => $json_productos
             ]);
         }
@@ -17,7 +17,7 @@
             $imagenes_selector = getImagesListTidy($pre_imagenes, "public/media/productos/");
 
             $json_imagenes_selector = json_encode($imagenes_selector, JSON_INVALID_UTF8_IGNORE);
-            view("pages.auth.productos.editorProductos.formNuevoProducto", [
+            view("pages.auth.adm-general.productos.editorProductos.formNuevoProducto", [
                 "categorias" => $categorias_selector,
                 "json_imagenes_selector" => $json_imagenes_selector
             ]);
@@ -115,7 +115,7 @@
 
             $json_imagenes_selector = json_encode($imagenes_selector, JSON_INVALID_UTF8_IGNORE);
             $json_imagenes_asignadas = json_encode($imagenes_asignadas, JSON_INVALID_UTF8_IGNORE);
-            view("pages.auth.productos.editorProductos.formModificarProducto", [
+            view("pages.auth.adm-general.productos.editorProductos.formModificarProducto", [
                 "producto" => $producto,
                 "categorias" => $categorias_selector,
                 "json_imagenes_selector" => $json_imagenes_selector,

@@ -73,6 +73,24 @@ main{
     transform: scale(1.08);
 }
 
+.card-color-categ{
+    width:100%;
+    height:80px;
+    position:absolute;
+    top:0px;
+    right:0px;
+    z-index:1;
+}
+
+.card-color-categ-md{
+    width:100%;
+    height:150px;
+    position:absolute;
+    top:0px;
+    right:0px;
+    z-index:1;
+}
+
 .text-card{
     word-wrap: break-word;
     font-size: 12px;
@@ -90,6 +108,13 @@ main{
     height: auto;
     max-width: 130px;
     max-height: 135px;
+}
+
+.img-categoria{
+    width: auto;
+    height: auto;
+    max-width:150px;
+    max-height: 200px;
 }
 
 .cursor-pointer{
