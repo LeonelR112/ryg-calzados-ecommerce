@@ -11,7 +11,7 @@
     $Router->get("/", "HomePageController@renderIndex");
     
     ## Productos
-    $Router->get("/productos", "ProductoController@renderIndex");
+    $Router->get("/catalogo", "CatalogoPublicoController@renderIndex");
 
     ## Mi carrito
     $Router->get("/mi-carrito", "MiCarritoController@renderIndex");

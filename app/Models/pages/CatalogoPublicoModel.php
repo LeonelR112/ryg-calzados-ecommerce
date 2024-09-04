@@ -1,5 +1,5 @@
 <?php
-    class ProductoModel extends ModelTools{
+    class CatalogoPublicoModel extends ModelTools{
         private $db;
         
         public function __construct(){
@@ -19,7 +19,7 @@
                 }
             }
             catch(PDOException $e){
-                Logger::error("ProductoModel - getAllCategoriasVisibles - " . $e->getMessage(), "Posible desconexión");
+                Logger::error("CatalogoPublicoModel - getAllCategoriasVisibles - " . $e->getMessage(), "Posible desconexión");
                 ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
             }
         }
@@ -37,7 +37,7 @@
                 }
             }
             catch(PDOException $e){
-                Logger::error("ProductoModel - getAllProductosVisibles - " . $e->getMessage(), "Posible desconexión");
+                Logger::error("CatalogoPublicoModel - getAllProductosVisibles - " . $e->getMessage(), "Posible desconexión");
                 ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
             }
         }

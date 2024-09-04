@@ -1,11 +1,12 @@
 <?php
-    class ProductoController{
+    class CatalogoPublicoController{
         static function renderIndex(){
-            $ProductoModel = new ProductoModel;
-            $categorias = $ProductoModel->getAllCategoriasVisibles();
+            $CatalogoPublicoModel = new CatalogoPublicoModel;
+            $categorias = $CatalogoPublicoModel->getAllCategoriasVisibles();
 
             $json_categorias = json_encode($categorias, JSON_INVALID_UTF8_IGNORE);
             view("pages.productos.index", [
+                "categorias" => $categorias,
                 "json_categorias" => $json_categorias
             ]);
         }

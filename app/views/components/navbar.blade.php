@@ -9,10 +9,7 @@
                   <a class="nav-link text-light" aria-current="page" href="{{route("")}}">INICIO</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link text-light" href="{{route('productos')}}">PRODUCTOS</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link text-light" href="{{route('por-mayor')}}">POR MAYOR</a>
+                  <a class="nav-link text-light" href="{{route('catalogo')}}">CATÁLOGO</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link text-light" href="{{route('ingresar')}}">INGRESAR</a>
