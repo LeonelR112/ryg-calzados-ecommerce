@@ -129,6 +129,12 @@ main{
     text-wrap: wrap;
 }
 
+.text-price-product{
+    color: rgb(19, 231, 107);
+    font-size: 28px;
+    font-weight: 700;
+}
+
 /* Spinners loading */
 /* HTML: <div class="loader"></div> */
 .loader-1 {

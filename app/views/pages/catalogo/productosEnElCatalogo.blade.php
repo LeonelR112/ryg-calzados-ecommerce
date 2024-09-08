@@ -1,7 +1,9 @@
 @extends('templates.mainTemplate')
 @section('title', 'R&G - ' . $categoria['nombrecat'])
 @section('header-scripts')
-
+    {!! paginationCSS() !!}
+    {!! lightboxCSS() !!}
+    {!! jsFile('classes/FrontTools') !!}
 @endsection
 @section('content')
 <section class="container mb-3 fade-in py-4">
@@ -32,6 +34,7 @@
             <div class="input-group mb-3" id="content_searcher">
                 <span class="input-group-text">Buscar</span>
                 <input type="text" class="form-control" id="input_search" placeholder="Buscar producto por nombre..." aria-label="Buscar producto por nombre...">
+                <span id="content_clear_filter"></span>
             </div>              
         </div>
         <div class="col-12">
@@ -42,5 +45,10 @@
 </section>
 @endsection
 @section('footer-scripts')
- 
+    {!! paginationJS() !!}
+    {!! lightboxJS() !!}
+    <script>
+        const JSON_PRODUCTOS = JSON.parse("{!! addslashes($json_productos) !!}");
+    </script>
+    {!! jsFile('functions/pages/public/catalogo/productosEnUnaCategoria', false) !!}
 @endsection
