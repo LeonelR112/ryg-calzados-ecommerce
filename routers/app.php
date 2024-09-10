@@ -13,6 +13,7 @@
     ## Productos
     $Router->get("/catalogo", "CatalogoPublicoController@renderIndex");
     $Router->get("catalogo/ver/{id}", "CatalogoPublicoController@verProductosDeUnaCategoria");
+    $Router->get("catalogo/detalles/{id}", "CatalogoPublicoController@verDetallesDeUnProducto");
 
     ## Mi carrito
     $Router->get("/mi-carrito", "MiCarritoController@renderIndex");

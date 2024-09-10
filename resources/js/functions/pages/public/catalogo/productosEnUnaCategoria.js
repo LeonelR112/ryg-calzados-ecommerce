@@ -48,7 +48,10 @@ class HandlerProductosEnCategoria extends FrontTools{
         for(let producto of array_productos){
             output_html += `
                 <article class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card position-relative flip-in-ver-left" style="animation-delay: ${delay_time}ms">
+                    <div class="card position-relative flip-in-ver-left h-100" style="animation-delay: ${delay_time}ms">
+                        <div class="card-header text-center">
+                            <span class="badge bg-primary fs-5">Art. ${producto.nro_art}</span>
+                        </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-end align-items-center flex-column">
                                 <a href="${producto.imagen}" data-lightbox="producto-${producto.id_producto}" data-title="${producto.nombreprod}"><img src="${producto.imagen}" alt="img-not-found" class="rounded shadow-sm img-fluid" /></a>
@@ -60,7 +63,7 @@ class HandlerProductosEnCategoria extends FrontTools{
                                 <div class="w-100 text-center small text-muted"><i class="bi bi-hand-index"></i> Más detalles</div>
                             </div>
                         </div>
-                        <a href="#" class="stretched-link"></a>
+                        <a href="${route('catalogo/detalles/' + producto.id_producto)}" class="stretched-link"></a>
                     </div>
                 </article>
             `;
@@ -92,10 +95,17 @@ class HandlerProductosEnCategoria extends FrontTools{
                 let descri_c = producto.descri_c.toLowerCase();
                 if(nombreprod.includes(valor_buscar) || descri_c.includes(valor_buscar)) valores_encontrados.push(producto);
             }
-            content_clear_filter.innerHTML = `<button class="btn btn-primary" title="Quitar filtro" type="button">X</button>`;
+            content_clear_filter.innerHTML = `<button class="btn btn-primary" title="Quitar filtro" type="button" onclick="Controller.limpiarFiltro()">X</button>`;
             this.setStorage(this.KEY_FILTER, `${valor}`);
             this.renderListaDeProductos(valores_encontrados);
         }
+    }
+
+    limpiarFiltro(){
+        content_clear_filter.innerHTML = ``;
+        input_search.value = '';
+        this.renderListaDeProductos(JSON_PRODUCTOS);
+        this.removeStorage(this.KEY_FILTER);
     }
 }
 

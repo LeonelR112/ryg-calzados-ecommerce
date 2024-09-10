@@ -81,5 +81,47 @@
                 ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
             }
         }
+
+        public function getProductoDetalles($id_producto){
+            try{
+                $sql = "SELECT pro.id_producto, pro.nro_art, pro.nombreprod, pro.precio, pro.stock, pro.descri_c, pro.descri_l, pro.orden, pro.talles, pro.visible, cat.id_categ, cat.nombrecat FROM productos AS pro LEFT JOIN pro_cat AS pca ON pca.id_producto = pro.id_producto INNER JOIN categorias AS cat ON cat.id_categ = pca.id_categ WHERE pro.id_producto = :id_producto AND pro.visible = 'S'";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(":id_producto", $id_producto, PDO::PARAM_INT);
+                if(!$stmt->execute()){
+                    $errorInfo = $stmt->errorInfo();
+                    Logger::error("Error en la ejecución de la consulta en EditorProductoModel: " . implode(", ", $errorInfo), "Error en PDO");
+                    return false;
+                }
+                else{
+                    $registro = $stmt->fetch(PDO::FETCH_ASSOC);
+                    return $registro;
+                }
+            }
+            catch(PDOException $e){
+                Logger::error("CatalogoPublicoModel - getProductoDetalles - " . $e->getMessage(), "Posible desconexión");
+                ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
+            }
+        }
+
+        public function getImagenesDeUnProducto(int $id_producto){
+            try{
+                $sql = "SELECT * FROM pro_img WHERE id_producto = :id_producto ORDER BY principal DESC";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(":id_producto", $id_producto, PDO::PARAM_INT);
+                if(!$stmt->execute()){
+                    $errorInfo = $stmt->errorInfo();
+                    Logger::error("Error en la ejecución de la consulta en EditorProductoModel: " . implode(", ", $errorInfo), "Error en PDO");
+                    return false;
+                }
+                else{
+                    $registros = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    return $registros;
+                }
+            }
+            catch(PDOException $e){
+                Logger::error("CatalogoPublicoModel - getImagenesDeUnProducto - " . $e->getMessage(), "Posible desconexión");
+                ModelTools::showErrorMessage(1, "No se pudo obtener los datos solicitados, el programa no puede continuar. Mas info en logs");
+            }
+        }
     }
 ?>

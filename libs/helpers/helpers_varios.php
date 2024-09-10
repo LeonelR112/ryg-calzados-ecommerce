@@ -166,6 +166,14 @@
         echo '<script src="'. MAIN_URL .'resources/js/plugins/editorTexto/trumbowyg.min.js"></script>';
     }
 
+    function exZoomJQueryCSS(){
+        echo '<link href="'. MAIN_URL .'resources/css/jquery.exzoom.css" rel="stylesheet" />';
+    }
+
+    function exZoomJQueryJS(){
+        echo '<script src="'. MAIN_URL .'resources/js/jquery.exzoom.js" rel="stylesheet" /></script>';
+    }
+
     function trumbowygPluginJS($nombre_plugin_js){
         if($nombre_plugin_js == 'color'){
             return '<script src="'. MAIN_URL .'resources/js/plugins/editorTexto/plugins/colors/trumbowyg.colors.min.js"></script>';
@@ -191,6 +199,15 @@
         else{
             return null;
         }
+    }
+
+    function obtenerLabelsTalles(string $talles){
+        $talles_label = '';
+        $talles_explodded = explode(',',$talles);
+        foreach($talles_explodded AS $talle){
+            $talles_label .= $talle == 'es' ? ' <span class="badge bg-primary">Especial</span>' : ' <span class="badge text-bg-primary">'. $talle .'</span>';
+        }
+        return $talles_label;
     }
 
     function getImagesFromMediaFolder(string $dir_folder){
